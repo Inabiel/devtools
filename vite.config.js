@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'inline',
       includeAssets: ['favicon.svg', 'icons.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
       manifest: {
         name: "Nabil's Developer Productivity Tools",
@@ -18,7 +19,9 @@ export default defineConfig({
         background_color: '#0f172a',
         display: 'standalone',
         orientation: 'any',
+        id: '/',
         start_url: '/',
+        prefer_related_applications: false,
         icons: [
           {
             src: '/pwa-192x192.png',
@@ -66,6 +69,10 @@ export default defineConfig({
             },
           },
         ],
+      },
+      // Enable PWA in dev mode (disabled by default)
+      devOptions: {
+        enabled: true,
       },
     }),
   ],
