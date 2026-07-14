@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+# Define directories
+PROJECT_DIR=""
+DEST_DIR=""
+
+echo "=== Building the project ==="
+cd "$PROJECT_DIR"
+npm run build
+
+echo "=== Deploying to $DEST_DIR ==="
+# Ensure target directory exists
+if [ ! -d "$DEST_DIR" ]; then
+    echo "Creating destination directory: $DEST_DIR"
+    sudo mkdir -p "$DEST_DIR"
+fi
+
+# Sync the build output (dist) to the target directory
+echo "Copying files from dist/ to $DEST_DIR..."
+sudo rsync -av --delete "$PROJECT_DIR/dist/" "$DEST_DIR/"
+
+echo "=== Deployment Completed Successfully! ==="
