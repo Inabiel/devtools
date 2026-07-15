@@ -3,26 +3,30 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/devtools/',
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'inline',
-      includeAssets: ['favicon.svg', 'icons.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
-      manifest: {
-        name: "Nabil's Developer Productivity Tools",
-        short_name: 'Dev Tools',
-        description:
-          'A collection of developer productivity tools — JSON beautifier, Base64 encoder/decoder, K8s secret generator, and more.',
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
-        display: 'standalone',
-        orientation: 'any',
-        id: '/devtools/',
-        start_url: '/devtools/',
-        prefer_related_applications: false,
+export default defineConfig(({ mode }) => {
+  const isGHPages = process.env.GITHUB_ACTIONS === 'true'
+  const base = isGHPages ? '/devtools/' : '/'
+
+  return {
+    base,
+    plugins: [
+      react(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        injectRegister: 'inline',
+        includeAssets: ['favicon.svg', 'icons.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
+        manifest: {
+          name: "Nabil's Developer Productivity Tools",
+          short_name: 'Dev Tools',
+          description:
+            'A collection of developer productivity tools — JSON beautifier, Base64 encoder/decoder, K8s secret generator, and more.',
+          theme_color: '#0f172a',
+          background_color: '#0f172a',
+          display: 'standalone',
+          orientation: 'any',
+          id: base,
+          start_url: base,
+          prefer_related_applications: false,
         icons: [
           {
             src: 'pwa-192x192.png',
@@ -78,4 +82,5 @@ export default defineConfig({
       },
     }),
   ],
+  }
 })
