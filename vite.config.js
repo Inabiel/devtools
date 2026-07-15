@@ -50,6 +50,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        inlineWorkboxRuntime: true,
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff,woff2}'],
         runtimeCaching: [
           {
