@@ -891,3 +891,83 @@ input[type="checkbox"].custom-checkbox {
     font-weight: 600;
     color: var(--color-secondary);
 }
+
+/* ── Timestamp Converter ── */
+.timestamp-results {
+    display: flex;
+    flex-direction: column;
+}
+
+.ts-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ts-row:last-child {
+    border-bottom: none;
+}
+
+.ts-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    min-width: 160px;
+    flex-shrink: 0;
+}
+
+.ts-value {
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--text-highlight);
+    word-break: break-all;
+    font-family: var(--font-family);
+}
+
+.ts-value.mono {
+    user-select: all;
+}
+
+.placeholder-hint {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* ── JWT Decoder ── */
+.dual-output {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .dual-output {
+        grid-template-columns: 1fr;
+    }
+    
+    .ts-label {
+        min-width: 120px;
+    }
+}
+
+.expiry-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.expiry-badge.valid {
+    color: var(--success-color);
+    background: rgba(21, 128, 61, 0.08);
+}
+
+.expiry-badge.expired {
+    color: var(--error-color);
+    background: rgba(220, 38, 38, 0.08);
+}
