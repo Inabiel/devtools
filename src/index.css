@@ -541,7 +541,7 @@ textarea::placeholder {
     font-weight: 500;
 }
 
-select, input[type="text"] {
+select, input[type="text"], input[type="number"] {
     background-color: #ffffff;
     border: 1px solid var(--border-color);
     color: var(--text-main);
@@ -689,4 +689,205 @@ input[type="checkbox"].custom-checkbox {
     .floating-toggle-btn {
         display: flex;
     }
+}
+
+/* ── UUID Generator ── */
+.uuid-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.uuid-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 12px;
+    transition: background-color 0.15s ease;
+}
+
+.uuid-row:last-child {
+    border-bottom: none;
+}
+
+.uuid-row:hover {
+    background-color: #faf9f5;
+}
+
+.uuid-value {
+    font-size: 0.8rem;
+    color: var(--text-highlight);
+    word-break: break-all;
+    user-select: all;
+}
+
+.copy-all-btn {
+    margin: 8px 20px 16px;
+    align-self: flex-start;
+}
+
+/* ── Regex Tester ── */
+.regex-inputs {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.regex-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.regex-slash {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    padding: 0 2px;
+    user-select: none;
+}
+
+.regex-pattern-input {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.regex-pattern-input:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px var(--color-secondary-glow);
+}
+
+.regex-flags-input {
+    width: 60px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 0.85rem;
+    outline: none;
+    text-align: center;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.regex-flags-input:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px var(--color-secondary-glow);
+}
+
+.regex-test-input {
+    width: 100%;
+    min-height: 150px;
+    background: #faf9f5;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    color: var(--text-main);
+    font-family: var(--font-family);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    outline: none;
+    resize: vertical;
+    transition: border-color var(--transition-speed);
+}
+
+.regex-test-input:focus {
+    border-color: var(--color-secondary);
+}
+
+.match-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--success-color);
+    background: rgba(21, 128, 61, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.highlighted-text {
+    padding: 20px;
+    font-family: var(--font-family);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    word-break: break-all;
+    background-color: #faf9f5;
+    white-space: pre-wrap;
+}
+
+.regex-highlight {
+    background-color: rgba(180, 83, 9, 0.25);
+    border-radius: 2px;
+    padding: 1px 0;
+    color: var(--text-highlight);
+}
+
+.match-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 20px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.match-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #faf9f5;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.match-index {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.match-full {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: rgba(180, 83, 9, 0.08);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.match-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.group-badge {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.group-badge code {
+    font-weight: 600;
+    color: var(--color-secondary);
 }

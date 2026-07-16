@@ -9,7 +9,15 @@ import {
   ChevronLeft, 
   Terminal,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  KeyRound,
+  Link,
+  Clock,
+  Fingerprint,
+  ArrowLeftRight,
+  Dices,
+  FileCode,
+  Search
 } from 'lucide-react';
 
 export default function Sidebar({ 
@@ -25,6 +33,7 @@ export default function Sidebar({
     json: true,
     encoding: true,
     converters: true,
+    generators: true,
   });
 
   const toggleGroup = (groupId) => {
@@ -41,7 +50,8 @@ export default function Sidebar({
       icon: Braces,
       items: [
         { id: 'json-beautifier', label: 'JSON Beautifier', icon: Braces },
-        { id: 'json-unescaper', label: 'JSON Unescaper', icon: Binary }
+        { id: 'json-unescaper', label: 'JSON Unescaper', icon: Binary },
+        { id: 'yaml-json', label: 'YAML ↔ JSON', icon: ArrowLeftRight }
       ]
     },
     {
@@ -50,7 +60,11 @@ export default function Sidebar({
       icon: ShieldCheck,
       items: [
         { id: 'base64', label: 'Base64 Tool', icon: ShieldCheck },
-        { id: 'k8s-secret', label: 'K8s Secret & .env', icon: Container }
+        { id: 'k8s-secret', label: 'K8s Secret & .env', icon: Container },
+        { id: 'jwt-decoder', label: 'JWT Decoder', icon: KeyRound },
+        { id: 'hash-generator', label: 'Hash Generator', icon: Fingerprint },
+        { id: 'url-encoder', label: 'URL Encoder/Decoder', icon: Link },
+        { id: 'html-entity', label: 'HTML Entities', icon: FileCode }
       ]
     },
     {
@@ -58,8 +72,18 @@ export default function Sidebar({
       label: 'Converters',
       icon: Code2,
       items: [
-        { id: 'go-converter', label: 'JSON <> Go Struct', icon: Code2 },
-        { id: 'ts-converter', label: 'JSON <> TS Type', icon: FileJson2 }
+        { id: 'go-converter', label: 'JSON ↔ Go Struct', icon: Code2 },
+        { id: 'ts-converter', label: 'JSON ↔ TS Type', icon: FileJson2 },
+        { id: 'timestamp', label: 'Timestamp Converter', icon: Clock }
+      ]
+    },
+    {
+      id: 'generators',
+      label: 'Generators & Testing',
+      icon: Dices,
+      items: [
+        { id: 'uuid-generator', label: 'UUID Generator', icon: Dices },
+        { id: 'regex-tester', label: 'Regex Tester', icon: Search }
       ]
     }
   ];
