@@ -1,5 +1,6 @@
 /* Warm Light Cream & Ivory Theme */
 :root {
+    --build: BUILD_ID_PLACEHOLDER;
     --bg-main: #fdfbf7;
     --bg-card: #ffffff;
     --bg-sidebar: #f5f2e9;

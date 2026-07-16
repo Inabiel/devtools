@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 deploy.sh
+.build-counter
+dev-dist/*
+tui/*
+nginx-script
