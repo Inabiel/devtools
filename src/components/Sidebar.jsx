@@ -17,7 +17,8 @@ import {
   ArrowLeftRight,
   Dices,
   FileCode,
-  Search
+  Search,
+  LockKeyhole
 } from 'lucide-react';
 
 export default function Sidebar({ 
@@ -63,6 +64,8 @@ export default function Sidebar({
         { id: 'k8s-secret', label: 'K8s Secret & .env', icon: Container },
         { id: 'jwt-decoder', label: 'JWT Decoder', icon: KeyRound },
         { id: 'hash-generator', label: 'Hash Generator', icon: Fingerprint },
+        { id: 'hash-checker', label: 'Hash Checker & Decrypt', icon: Search },
+        { id: 'asymmetric-crypto', label: 'Asymmetric Crypto', icon: LockKeyhole },
         { id: 'url-encoder', label: 'URL Encoder/Decoder', icon: Link },
         { id: 'html-entity', label: 'HTML Entities', icon: FileCode }
       ]

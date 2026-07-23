@@ -9,6 +9,8 @@ import K8sSecretTool from './components/K8sSecretTool';
 import JwtDecoder from './components/JwtDecoder';
 import UrlEncoder from './components/UrlEncoder';
 import HashGenerator from './components/HashGenerator';
+import HashChecker from './components/HashChecker';
+import AsymmetricCrypto from './components/AsymmetricCrypto';
 import HtmlEntityEncoder from './components/HtmlEntityEncoder';
 import GoConverter from './components/GoConverter';
 import TsConverter from './components/TsConverter';
@@ -71,6 +73,10 @@ function App() {
         return <UrlEncoder copyToClipboard={copyToClipboard} pasteFromClipboard={pasteFromClipboard} />;
       case 'hash-generator':
         return <HashGenerator copyToClipboard={copyToClipboard} pasteFromClipboard={pasteFromClipboard} />;
+      case 'hash-checker':
+        return <HashChecker copyToClipboard={copyToClipboard} pasteFromClipboard={pasteFromClipboard} />;
+      case 'asymmetric-crypto':
+        return <AsymmetricCrypto copyToClipboard={copyToClipboard} pasteFromClipboard={pasteFromClipboard} />;
       case 'html-entity':
         return <HtmlEntityEncoder copyToClipboard={copyToClipboard} pasteFromClipboard={pasteFromClipboard} />;
       case 'go-converter':

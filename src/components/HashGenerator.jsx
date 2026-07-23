@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Clipboard, Trash2, Copy, Hash } from 'lucide-react';
+import bcrypt from 'bcryptjs';
 
 // Pure JS MD5 implementation
 function md5(string) {
@@ -148,6 +149,7 @@ const ALGORITHMS = [
   { id: 'SHA-256', webCrypto: 'SHA-256' },
   { id: 'SHA-384', webCrypto: 'SHA-384' },
   { id: 'SHA-512', webCrypto: 'SHA-512' },
+  { id: 'bcrypt', webCrypto: null },
 ];
 
 export default function HashGenerator({ copyToClipboard, pasteFromClipboard }) {
@@ -155,13 +157,20 @@ export default function HashGenerator({ copyToClipboard, pasteFromClipboard }) {
   const [output, setOutput] = useState('');
   const [error, setError] = useState('');
   const [algorithm, setAlgorithm] = useState('SHA-256');
+  const [saltRounds, setSaltRounds] = useState(10);
+  const [hashLoading, setHashLoading] = useState(false);
 
   const handleHash = async () => {
     setError('');
     if (!input) { setOutput(''); return; }
+    setHashLoading(true);
     try {
       const algo = ALGORITHMS.find(a => a.id === algorithm);
-      if (algo.webCrypto) {
+      if (algorithm === 'bcrypt') {
+        const salt = await bcrypt.genSalt(saltRounds);
+        const result = await bcrypt.hash(input, salt);
+        setOutput(result);
+      } else if (algo.webCrypto) {
         setOutput(await shaHash(input, algo.webCrypto));
       } else {
         setOutput(md5(input));
@@ -169,6 +178,8 @@ export default function HashGenerator({ copyToClipboard, pasteFromClipboard }) {
     } catch (e) {
       setError('Hashing failed: ' + e.message);
       setOutput('');
+    } finally {
+      setHashLoading(false);
     }
   };
 
@@ -210,7 +221,23 @@ export default function HashGenerator({ copyToClipboard, pasteFromClipboard }) {
               {ALGORITHMS.map(a => <option key={a.id} value={a.id}>{a.id}</option>)}
             </select>
           </div>
-          <button className="primary-btn btn-glow" onClick={handleHash}><Hash size={16} /> Generate Hash</button>
+          {algorithm === 'bcrypt' && (
+            <div className="control-group">
+              <label>Salt Rounds:</label>
+              <input
+                type="number"
+                min="4"
+                max="14"
+                value={saltRounds}
+                onChange={(e) => setSaltRounds(Number(e.target.value))}
+                style={{ width: '70px', textAlign: 'center' }}
+                title="Higher = more secure but slower (4-14 recommended)"
+              />
+            </div>
+          )}
+          <button className="primary-btn btn-glow" onClick={handleHash} disabled={hashLoading}>
+            <Hash size={16} /> {hashLoading ? 'Generating...' : 'Generate Hash'}
+          </button>
         </div>
 
         <div className="card">
